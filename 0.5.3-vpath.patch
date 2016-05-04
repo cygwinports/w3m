@@ -1,0 +1,27 @@
+--- origsrc/w3m-0.5.3/Makefile.in	2016-05-04 16:34:00.213565900 -0500
++++ src/w3m-0.5.3/Makefile.in	2016-05-04 16:36:00.668361700 -0500
+@@ -181,13 +181,13 @@ functable.c: funcname.tab mktable$(EXT)
+ w3mhelp-funcname.pl: scripts/w3mhelp-funcname.pl.in funcname.tab $(top_srcdir)/doc/keymap.default $(top_srcdir)/doc/keymap.lynx
+ 	@echo "generating w3mhelp-funcname.pl..."
+ 	@echo '%funcname = (' > scripts/w3mhelp-funcname.pl
+-	@sed -ne "/^[a-zA-Z@]/s/\([a-zA-Z@][a-zA-Z0-9@_]*\)[ 	][ 	]*\([^ 	]*\)/'\1', '\2',/p" < $(top_srcdir)/funcname.tab >> scripts/w3mhelp-funcname.pl
++	@sed -ne "/^[a-zA-Z@]/s/\([a-zA-Z@][a-zA-Z0-9@_]*\)[ 	][ 	]*\([^ 	]*\)/'\1', '\2',/p" < funcname.tab >> scripts/w3mhelp-funcname.pl
+ 	@echo ');' >> scripts/w3mhelp-funcname.pl
+ 	@echo '%keyfunc = (' >> scripts/w3mhelp-funcname.pl
+ 	@case "$(KEYBIND_SRC)" in *lynx*) keymap=keymap.lynx;; *) keymap=keymap.default;; esac; \
+ 	sed -ne "/^keymap/s/^keymap[ 	][ 	]*\([^ 	]*\)[ 	][ 	]*\([a-zA-Z@][a-zA-Z0-9@_]*\)/'\1', '\2', /p" < $(top_srcdir)/doc/$$keymap >> scripts/w3mhelp-funcname.pl
+ 	@echo ');' >> scripts/w3mhelp-funcname.pl
+-	@cat scripts/w3mhelp-funcname.pl.in >> scripts/w3mhelp-funcname.pl
++	@cat $(top_srcdir)/scripts/w3mhelp-funcname.pl.in >> scripts/w3mhelp-funcname.pl
+ 	@echo "done"
+ 
+ w3mhelp-funcdesc-stamp: $(top_srcdir)/doc/README.func $(top_srcdir)/doc-jp/README.func scripts/w3mhelp-funcdesc.en.pl.in scripts/w3mhelp-funcdesc.ja.pl.in
+@@ -198,7 +198,7 @@ w3mhelp-funcdesc-stamp: $(top_srcdir)/do
+ 	  echo '%funcdesc = (' > scripts/w3mhelp-funcdesc.$$lang.pl; \
+ 	  sed -ne "/^[a-zA-Z@]/s/\([a-zA-Z@][a-zA-Z0-9@_]*\)[ 	][ 	]*\(.*\)/'\1', '\2',/p" < $(top_srcdir)/$$dir/README.func >> scripts/w3mhelp-funcdesc.$$lang.pl; \
+ 	  echo ');' >> scripts/w3mhelp-funcdesc.$$lang.pl; \
+-	  cat scripts/w3mhelp-funcdesc.$$lang.pl.in >> scripts/w3mhelp-funcdesc.$$lang.pl; \
++	  cat $(top_srcdir)/scripts/w3mhelp-funcdesc.$$lang.pl.in >> scripts/w3mhelp-funcdesc.$$lang.pl; \
+ 	done
+ 	@echo done
+ 	@touch scripts/w3mhelp-funcdesc-stamp

@@ -1,0 +1,24 @@
+--- origsrc/w3m-0.5.3/w3mimg/w3mimg.c	2011-01-04 03:22:28.000000000 -0600
++++ src/w3m-0.5.3/w3mimg/w3mimg.c	2016-05-04 17:20:26.005816600 -0500
+@@ -14,10 +14,6 @@ w3mimg_open()
+     uid_t runner_uid = getuid();
+     uid_t owner_uid = geteuid();
+ #endif
+-#ifdef USE_W3MIMG_WIN
+-    if (w_op == NULL)
+-	w_op = w3mimg_winopen();
+-#endif
+ #ifdef USE_W3MIMG_X11
+ #ifdef W3MIMGDISPLAY_SETUID
+     /* run in user privileges */
+@@ -29,6 +25,10 @@ w3mimg_open()
+     setreuid(runner_uid, owner_uid);
+ #endif
+ #endif
++#ifdef USE_W3MIMG_WIN
++    if (w_op == NULL)
++	w_op = w3mimg_winopen();
++#endif
+ #ifdef USE_W3MIMG_FB
+     /* run in setuid privileges */
+     if (w_op == NULL)

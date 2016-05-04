@@ -1,0 +1,12 @@
+--- origsrc/w3m-0.5.3/main.c	2016-05-04 14:43:05.920078000 -0500
++++ src/w3m-0.5.3/main.c	2016-05-04 15:01:56.559150900 -0500
+@@ -30,6 +30,9 @@ extern int do_getch();
+ #define getch()	do_getch()
+ #endif				/* defined(USE_GPM) || defined(USE_SYSMOUSE) */
+ #endif
++#ifdef USE_BINMODE_STREAM
++#include <io.h>
++#endif
+ 
+ #ifdef __MINGW32_VERSION
+ #include <winsock.h>

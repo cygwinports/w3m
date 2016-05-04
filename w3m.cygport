@@ -1,0 +1,41 @@
+NAME="w3m"
+VERSION=0.5.3
+RELEASE=2
+CATEGORY="Web"
+SUMMARY="Text-mode web browser"
+DESCRIPTION="w3m is a text-based web browser as well as a pager like
+'more' or 'less'. With w3m you can browse web pages through a terminal
+emulator window (xterm, rxvt, etc.). Moreover, w3m can be used as a text
+formatting tool which typesets HTML into plain text."
+HOMEPAGE="http://w3m.sourceforge.net/"
+SRC_URI="mirror://sourceforge/w3m/w3m-${VERSION}.tar.gz"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-rh555467_FTBFS.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-rh566101_Fix-DSO-X11.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-0.5.2-ssl_verify_server_on.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-rh707994-fix-https-segfault.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-0.5.3-parallel-make.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-0.5.3-format-security.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-0.5.3-FTBFS-sys-errlist.patch
+	http://pkgs.fedoraproject.org/cgit/w3m.git/plain/w3m-0.5.3-fix-segfault-on-bogus-text.patch
+	0.5.3-autopoint.patch
+	0.5.3-cygwin-compile.patch
+	0.5.3-cygwin-x11.patch
+	0.5.3-vpath.patch
+"
+
+PKG_NAMES="w3m" # w3m-img"
+#w3m_REQUIRES="compface xdg-utils"
+w3m_CONTENTS="--exclude=w3mimg* usr/"
+w3m_img_SUMMARY="${SUMMARY} (inline image support)"
+w3m_img_REQUIRES="ImageMagick w3m"
+w3m_img_CONTENTS="usr/libexec/w3m/w3mimg*"
+
+NO_AUTOHEADER=1
+#	--enable-image=x11,win --with-imagelib=gtk2
+#	--with-browser=xdg-open --with-mailer=xdg-email
+CYGCONF_ARGS="
+	--disable-image
+	--with-browser=cygstart --with-mailer=cygstart
+	--with-charset=UTF-8
+"

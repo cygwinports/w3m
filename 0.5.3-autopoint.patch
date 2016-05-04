@@ -1,0 +1,12 @@
+--- origsrc/w3m-0.5.3/configure.ac	2011-01-14 21:01:55.000000000 -0600
++++ src/w3m-0.5.3/configure.ac	2016-05-04 15:15:53.686952600 -0500
+@@ -42,7 +42,8 @@ AC_DEFINE_UNQUOTED(W3M_TARGET, $W3M_TARG
+ 
+ AC_W3M_M17N
+ if test x$enable_messagel10n = xno; then
+- AM_GNU_GETTEXT([external])
++AM_GNU_GETTEXT([external])
++AM_GNU_GETTEXT_VERSION([0.18])
+ fi
+ 
+ NLSTARGET=""
