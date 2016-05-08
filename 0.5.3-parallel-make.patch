@@ -1,0 +1,19 @@
+--- w3m-0.5.3-3.x86_64/origsrc/w3m-0.5.3/w3mimg/Makefile.in	2016-05-08 11:45:11.768431100 -0500
++++ w3m-0.5.3-3.x86_64/src/w3m-0.5.3/w3mimg/Makefile.in	2016-05-08 14:56:28.828585800 -0500
+@@ -27,8 +27,14 @@
+ w3mimg.o: w3mimg.c
+ 	$(CC) $(CFLAGS) -c $<
+ 
+-$(SUBDIRS):
+-	cd $@ && $(MAKE) CC="$(CC)" OPTS="$(OPTS)"
++fb/fb_w3mimg.o:
++	cd fb && $(MAKE) CC="$(CC)" OPTS="$(OPTS)"
++
++win/win_w3mimg.o:
++	cd win && $(MAKE) CC="$(CC)" OPTS="$(OPTS)"
++
++x11/x11_w3mimg.o:
++	cd x11 && $(MAKE) CC="$(CC)" OPTS="$(OPTS)"
+ 
+ clean:
+ 	@-$(RM) -f *.o

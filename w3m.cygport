@@ -21,6 +21,7 @@ PATCH_URI="
 	0.5.3-autopoint.patch
 	0.5.3-cygwin-compile.patch
 	0.5.3-cygwin-x11.patch
+	0.5.3-parallel-make.patch
 	0.5.3-vpath.patch
 "
 
